@@ -1,0 +1,36 @@
+<!-- OBJETO WINDOWS
+alert, prompt, confirm, close, print setInterval setTimeout -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="objetos.js"></script>
+</head>
+<body>
+    <!-- objeto confirm -->
+    <!-- <p id="ejemplo">En este párrafo se mostrará la opción esocgida por el usuario</p>
+    <input type="button" value="Escoge una opción para mostrar mensaje" onclick="alerta()"> -->
+
+    <!-- Varios objetos -->
+    <script>
+        var edad = prompt("Indica tu edad");
+        while (!confirm("tu edad es:  " + edad)){
+            edad = prompt("indica tu edad");
+        }
+        if (edad < 18){
+            alert("Eres menor de edad, aún no puedes rumbear");
+        } else{
+            alert("Eres mayor de edad, y puedes rumbear");
+        }
+        setTimeout(cerrar,5000);
+        document.write("Esta página se cerrará en 5 seg")
+        function cerrar(){
+            window.close();
+        }
+     </script>
+     <br><a href="javascript:window.print()">Imprimir esta página</a>
+    
+</body>
+</html>
