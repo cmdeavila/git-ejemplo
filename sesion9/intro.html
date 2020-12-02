@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        var nombre, apellido;
+        nombre = prompt("Escribe tu nombre: ").toUpperCase();
+        apellido = prompt("Escribe tu apellido: ").toUpperCase();
+        if (nombre == 'JUAN' && apellido =='PEREZ'){
+            alert('Puedes pasar');
+        }else{
+            alert('No Puedes pasar');
+        }
+
+    </script> -->
+    <!-- <script>
+        var cont, n;
+        n = prompt("Escriba un número: ")
+        document.write('Hola' + n + 'veces<br>');
+        for(var cont=0; cont<n; cont++){
+            document.write(cont + ' Hola<br>');
+        }
+    </script> -->
+
+    <!-- <script>
+        var i = 0;
+        while (i < 11){
+            alert('valor de i: ' + i);
+            i++;
+        }
+    </script> -->
+
+    <script>
+        function mostrarComprendidos(x1, x2){
+            var inicio
+            for(inicio = x1; inicio<=x2; inicio++){
+                document.write(inicio + ' ');
+            }
+        }
+
+        var valor1, valor2;
+        valor1 = prompt('Ingrese valor inicial: ');
+        valor1 = parseInt(valor1);
+        valor2 = prompt('Ingrese valor final: ');
+        valor2 = parseInt(valor2);
+        mostrarComprendidos(valor1, valor2);
+
+    </script>
+
+
+</body>
+</html>

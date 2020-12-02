@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Activo<input type="checkbox" name="activo" id="activo">
+    <script>
+        var checkbox = document.getElementById('activo');
+        checkbox.addEventListener("change", validaCheckbox, false);
+
+        function validaCheckbox() {
+            var checked = checkbox.checked;
+            if (checked) {
+                alert('checkbox esta seleccionado');
+            }
+        }
+
+ 
+
+    </script>
+</body>
+
+</html>

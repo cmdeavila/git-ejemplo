@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesion</title>
+    <link rel="stylesheet" href="CSS/estilos.css">
+    <!-- Referencio el archivo js -->
+    <script src="validar.js"></script>
+</head>
+
+<body>
+    <div class="cajalogin">
+        <img class="imagen" src="../imagenes/login.png" alt="logo">
+        <h1>Inicia Sesión</h1>
+        <!-- le coloco los siguientes atributos al formulario -->
+        <form action="" name="formulario" method="post" action="" onSubmit="return validar_formulario();">
+            <!-- 1 Username -->
+            <label for="nomusuario">Nombre de usuario</label>
+            <input type="text" name="nomusuario" id="nomusuario" placeholder="Usuario">
+            <!-- 2 Password -->
+            <label for="pass">Contraseña</label>
+            <input type="password" name="pass" id="pass" placeholder="Contraseña">
+            <img class="ver" src="show_pwd.png" onmouseover="mostrarPassword();" onmouseout="ocultarPassword();" />
+            <input type="submit" value="Iniciar">
+            <a href="#">¿Olvidó su Contraseña?</a>
+            <br>
+            <a href="#">Registrese</a>
+        </form>
+    </div>
+</body>
+</html>

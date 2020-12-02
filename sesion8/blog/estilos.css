@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-size: 20px;
+    font-family: sans-serif;
+    /* cambiar el peso de la fuente */
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 5px;
+}
+h2{
+    font: bold 14px sans-serif;
+    text-align: left;
+}
+/* si quiero apllicar un estio similar a varios elementos */
+header, section, footer, aside, nav, article, hgroup{
+    /* border: 1px solid black; */
+    display: block;
+}
+body{
+    text-align: left;
+    background: gray;
+}
+.contenedor{
+    width: 960px;
+    border: 1px solid black;
+    margin: 15px auto;
+    background: #ffffff;
+}
+.cabecera{
+    background: #fffbb9;
+    border:1px solid #999999;
+    padding: 20px;
+}
+.menu{
+    background: #b2bec3;
+    padding: 5px 15px;
+    text-align: left;
+}
+.menu li{
+    list-style: none;
+    padding: 5px;
+    font: bold 14px verdana;
+    display: inline-block;
+}
+.seccion{
+    width: 600px;
+    margin: 20px;
+    float:left;
+    /* border:1px solid black;
+    background: blue; */
+
+}
+article{
+    background: #fffbcc;
+    /* separamos los elementoos del articulo */
+    border: 1px solid black;
+    padding: 20px;
+    margin-bottom: 15px;
+    
+}
+
+article time{
+    color: #999;
+    text-align: left;
+}
+
+article footer{
+    text-align: right;
+    margin-top: 20px;
+}
+
+article p{
+    text-align: justify;
+}
+.columna{
+    margin: 20px 0;
+    width: 300px;
+    float:left;
+    /* border: 1px solid black;
+    background: blue; */
+}
+.columna blockquote{
+    border: 1px solid black;
+    padding: 40px;
+    background: #fffbb9;
+    margin-bottom: 20;
+}
+
+.piep{
+    clear: both;
+    padding: 20px;
+    background: #2d3436;
+    color:#ffffff;
+}
+
+img{
+    width: 150px;
+    margin: 20px auto
+}
