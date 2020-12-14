@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <title>Login</title>
+    </head>
+    <body>
+        <form
+            action="/login"
+            name="formulario"
+            id="formulario"
+            method="POST"
+        >
+            <div>
+                <label for="usuario">Usuario</label>
+                <input
+                    type="text"
+                    name="usuario"
+                    placeholder="Digite su usuario"
+                />
+            </div> <br>
+            <div>
+                <label for="contrasena">Contraseña</label>
+                <input
+                    type="password"
+                    name="contrasena"
+                    placeholder="Digite su contraseña"
+                />
+            </div> <br>
+            <input type="submit" value="Enviar" onmouseover="enviar()"/>
+            <input type="submit" value="Insertar" onmouseover="insertar()"/>
+            
+        </form>
+        <script src="{{ url_for('static', filename = 'js/funciones.js' ) }}"></script>
+    </body>
+</html>

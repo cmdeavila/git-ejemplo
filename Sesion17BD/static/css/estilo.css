@@ -1,0 +1,7 @@
+h1 {font-family: sans-serif; color:blue; background-color: lightblue ; }
+input[type=submit] {text-align: center; min-width: 200px}
+form {font-family: cursive; color: red}
+
+.p {
+    font-family: cursive; color:blue
+}

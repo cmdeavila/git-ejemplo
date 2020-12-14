@@ -1,5 +1,6 @@
 <html>
 <meta charset="utf-8" />
+<html lang="es"></html>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/miEstilo.css') }}">
 <script src="{{ url_for('static', filename='js/validacion.js') }}"></script>
 <body>
@@ -9,7 +10,8 @@
     <div class="flash">{{ message }}</div>
   {% endfor %}
 </section>
- <h1>Registrarse</h1>
+ 
+<h1>Registrarse</h1>
  <form name="formulario" method="post" action="{{ url_for('register')}}">
     <label for="usuario">Usuario</label>
     <input name="usuario" id="usuario" >
@@ -17,7 +19,8 @@
     <input name="email" id="email" >
     <label for="password">Contraseña</label>
     <input type="password" name="password" id="password" >
-	<img src="{{ url_for('static', filename='images/show_pwd.png') }}" onmouseover="mostrarPassword();" onmouseout="ocultarPassword();" />
+    <img src="{{ url_for('static', filename='images/show_pwd.png') }}" 
+    onmouseover="mostrarPassword();" onmouseout="ocultarPassword();" />
     <input type="submit" value="Registrarse">
   </form>
 </body>

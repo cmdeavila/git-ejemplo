@@ -1,0 +1,28 @@
+<form name='fLogin' method='POST' action='/registrar/' novalidate>
+    <div class='principal'>
+        <div class='izquierda'>
+          <div class='fila'>
+           <div class='col2'>{{ form.usuario.label }}</div>   
+           <div>{{ form.usuario(size=20) }}</div>   
+          </div>  
+          <div class='fila'>
+            <div class='col2'>{{ form.email.label }}</div>   
+            <div>{{ form.email(size=100) }}</div>   
+           </div>  
+           <div class='fila'>
+           <div class='col2'>{{ form.clave1.label }}</div>   
+           <div>{{ form.clave1(size=30) }}</div>   
+          </div>  
+          <div class='fila'>
+            <div class='col2'>{{ form.clave2.label }}</div>   
+            <div>{{ form.clave2(size=30) }}</div>   
+           </div>  
+           <div class='fila'>
+           <div class='col2'>&nbsp;</div>   
+           <div>{{ form.enviar() }}</div>   
+          </div>  
+        </div>
+        <div class='derecha'>
+        </div>
+       </div>
+</form>

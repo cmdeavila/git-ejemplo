@@ -4,7 +4,10 @@ from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired
 
 class Contactenos(FlaskForm):
-    nombre = StringField('Nombreusuario', validators=[DataRequired(message='No dejar vacío, completar')])
-    correo = EmailField('Correo', validators=[DataRequired(message='No dejar vacío, completar')])
-    mensaje = StringField('Mensaje', validators=[DataRequired(message='No dejar vacío, completar')])
+    nombre = StringField('Nombreusuario', 
+                         validators=[DataRequired(message='No dejar vacío, completar')])
+    correo = EmailField('Correo', 
+                        validators=[DataRequired(message='No dejar vacío, completar')])
+    mensaje = StringField('Mensaje', 
+                          validators=[DataRequired(message='No dejar vacío, completar')])
     enviar = SubmitField('Enviar Mensaje')

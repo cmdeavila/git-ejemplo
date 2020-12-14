@@ -14,7 +14,7 @@ function validar_formulario(){
  var formatoCorreo = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
  if(!correo.value.match(formatoCorreo))
  {
-	alert("Debes ingresar un correo electronico valido!");
+	alert("Debes ingresar un correo electrónico válido!");
 	correo.focus();
 	//return false; //Para la parte dos, que los datos se conserven
  }

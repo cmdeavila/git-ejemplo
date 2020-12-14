@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {{url_for('static', filename = 'css/estilo.css') }}  ">
+    <script src=" {{url_for('static', filename = 'js/funciones.js')}}  "></script>
+    <title>Estudiante</title>
+</head>
+<body>
+    {% block contenido  %}
+
+    <h1> Ingreso de Estudiantes </h1>
+    <form action="/estudiante/save" id = "formulario" method = "POST" novalidate>
+
+        {{ form.hidden_tag() }}
+        <div class = p>
+            {{form.documento.label}}
+            {{ form.documento() }} <br> <br>
+        </div>
+        <div>
+            {{form.nombre.label}}
+            {{ form.nombre() }} <br> <br>
+        </div>
+        <div>
+            {{form.ciclo.label}}
+            {{ form.ciclo() }}
+            {{form.sexo.label}}
+            {{ form.sexo() }}
+            {{ form.estado() }}
+            {{form.estado.label}}
+            <br><br>
+        </div>
+        <div>
+            {{form.enviar()}}
+            {{form.consultar()}}
+            {{form.listar()}}
+
+        </div>
+
+    </form>
+
+    {%endblock %}
+    
+</body>
+</html>

@@ -1,7 +1,7 @@
 import os
 
 import yagmail as yagmail
-from flask import Flask, render_template, flash, request, redirect, url_for
+from flask import Flask, render_template, flash, request, url_for,redirect
 import utils
 
 app = Flask(__name__)
@@ -26,24 +26,27 @@ def register():
                 error = "El usuario debe ser alfanumerico o incluir solo '.','_','-'"
                 flash(error)
                 return render_template('register.html')
+                #return redirect(url_for('register'))
 
             if not utils.isPasswordValid(password):
                 error = 'La contraseña debe contenir al menos una minúscula, una mayúscula, un número y 8 caracteres'
                 flash(error)
                 return render_template('register.html')
+                #return redirect(url_for('register'))
 
             if not utils.isEmailValid(email):
-                print("4")
+                #print("4")
                 error = 'Correo invalido'
                 flash(error)
                 return render_template('register.html')
+                #return redirect(url_for('register'))
 
             yag = yagmail.SMTP('pruebamintic2022', 'Jmd12345678') #modificar con tu informacion personal
             yag.send(to=email, subject='Activa tu cuenta',
                      contents='Bienvenido, usa este link para activar tu cuenta ')
             flash('Revisa tu correo para activar tu cuenta')
             return render_template('login.html')
-        print("Llego al final")
+        #print("Llego al final")
         return render_template('register.html')
     except:
         return render_template('register.html')
