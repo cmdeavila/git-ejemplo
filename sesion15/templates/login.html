@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{%block body%}
+    <section class="jumbotron">
+        <div class="container">
+            <h1  class="display-3">Inicio de sesión</h1>
+             <section class="content">
+                {% for message in get_flashed_messages()%}
+                    <div class="flash">{{ message}}</div>
+                {% endfor %}
+            </section>
+            <form name="loginForm"  method="post" action="{{ url_for('login') }}">
+                <label>Usuario</label>
+                <input name="usuario" id="usuario" type="text">
+
+                <label>Contraseña</label>
+                <input type="password" name="password" id="password">
+
+                <input type="submit" value="Inicio de sesion">
+            </form>
+        </div>
+    </section>
+{% endblock %}
+
+
+

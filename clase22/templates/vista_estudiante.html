@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Estudiante</title>
+</head>
+<body>
+    {% for message in get_flashed_messages() %}
+    {{message}}
+    {% endfor %}
+    
+    <table style = "width:100% "  border= "1" id = "tabla" >
+        <tbody>
+            <tr>
+                <td>Documento</td>
+                <td>Nombre</td>
+                <td>Ciclo</td>
+                <td>Sexo</td>
+                <td>Estado</td>
+            </tr>
+            {% if row %}
+            <tr>
+                <td>{{ row ["documento"]}} </td> 
+                <td>{{ row ["nombre"] }} </td>
+                <td>{{ row ["ciclo"] }}</td> 
+                <td>{{ row ["sexo"] }} </td>
+                <td>{{ row ["estado"] }} </td>
+            </tr>
+        
+            {% endif %}
+
+
+        </tbody>
+
+
+    </table>
+
+
+    
+    
+
+</body>
+</html>

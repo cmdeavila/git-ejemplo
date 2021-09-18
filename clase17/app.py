@@ -1,9 +1,13 @@
 import os
-from flask import Flask, render_template, request, flash, session
+import random
+import yagmail as yagmail
+from flask import Flask, render_template, request, flash, session, send_file, url_for,redirect
 from formulario import formEstudiante, formLogin
 import sqlite3
 from markupsafe import escape
 import hashlib
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -13,6 +17,10 @@ def home():
     form = formEstudiante()
     return render_template("estudiantes.html" ,form = form)
 
+@app.route("/activate", methods=["GET"])
+def activate():
+    return "activar"
+
 @app.route("/estudiante/save", methods=["POST"])
 def estudiante_save():
     if "usuario" in session:
@@ -20,18 +28,32 @@ def estudiante_save():
         if request.method == "POST":
             documento = form.documento.data
             nombre = form.nombre.data
+            correo = form.correo.data
             sexo = form.sexo.data
             ciclo = form.ciclo.data
             estado = form.estado.data
-            try:
-                with sqlite3.connect("estudiantes.db") as con:
-                    cur = con.cursor() #Manipula la conexión a la bd
-                    cur.execute("INSERT INTO Estudiantes (documento, nombre, sexo, ciclo, estado) VALUES (?,?,?,?,?)",
-                                (documento, nombre, sexo, ciclo, estado))
-                    con.commit() #confirma la sentencia
-                    return "Se guardo satisfactoriamente"
-            except :
-                con.rollback()
+            f = request.files['archivo']
+            f.save(f.filename)
+            #try:
+            with sqlite3.connect("estudiantes.db") as con:
+                cur = con.cursor() #Manipula la conexión a la bd
+                cur.execute("INSERT INTO Estudiantes (documento, nombre, sexo, ciclo, estado, correo, ruta) VALUES (?,?,?,?,?,?,?)",
+                            (documento, nombre, sexo, ciclo, estado, correo,f.filename))
+                con.commit() #confirma la sentencia
+                
+                number = hex(random.getrandbits(512))[2:]
+                
+
+                cur.execute(
+                        'INSERT INTO activationlink(challenge, state, username,email) VALUES (?,?,?,?)',
+                        (number,0, "123",correo)
+                    )
+                con.commit()
+                yag = yagmail.SMTP(user="pruebamintic2022@gmail.com", password="Jmd12345678") #user correo
+                yag.send(to=correo, subject='Activa tu cuenta', contents='Bienvenido, usa este link para activar tu cuenta '+url_for('activate',_external=True)+'?auth='+number )
+                return "Se guardo satisfactoriamente"
+            # except :
+            #     con.rollback()
         return "No se pudo guardar"
     else:
         return "Acción no permitida <a href = '/login' > Login </a>"
@@ -130,21 +152,29 @@ def login():
 
 @app.route("/login", methods=["POST"])
 def login_post():
-    form = formEstudiante()
-    usuario = request.form["usuario"]
-    contrasena = request.form["contrasena"]
+    
+    usuario = escape(request.form["usuario"])
+    contrasena = escape(request.form["contrasena"])
 
     with sqlite3.connect("estudiantes.db") as con:
         try:
             cur = con.cursor()
-            #cur.execute("SELECT * FROM usuario WHERE usuario = '"+ usuario +"' AND clave = '"+ contrasena +"'")
-            cur.execute("SELECT * FROM usuario WHERE usuario = ? AND clave = ? ", [usuario, contrasena])
-            if cur.fetchone():
-                session["usuario"] = usuario #Creo la variable de sesion
-                #return 'Usuario logeado'
-                return render_template("estudiantes.html", form=form)
+            #user=cur.execute(f"SELECT clave FROM usuario WHERE usuario ='{usuario}'").fetchone()
+            user=cur.execute("SELECT clave FROM usuario WHERE usuario =?",[usuario]).fetchone()
+            if user != None:
+                clave = user[0]
                 
-    
+                if check_password_hash(clave, contrasena):
+                    #if cur.fetchone():
+                        session["usuario"] = usuario #Creo la variable de sesion
+                        form = formEstudiante()
+                        return render_template("estudiantes.html", form=form)
+                        flash (user)
+                else:
+                        return 'Usuario o contraseña inválidos'       
+            else:
+                return 'Usuario o contraseña inválidos'
+        
         except:
             con.rollback()
     return 'Usuario no permitido'
@@ -168,16 +198,18 @@ def encriptar():
     if request.method == "POST":
         usuario = request.form["usuario"]
         contrasena = request.form["contrasena"]
-        encrip=hashlib.md5(contrasena.encode())
-        consenc=encrip.hexdigest()
-        
+        # encrip=hashlib.md5(contrasena.encode())
+        # consenc=encrip.hexdigest()
+        hashContraseña = generate_password_hash(contrasena)
         with sqlite3.connect("estudiantes.db") as con:
             try:
                 cur = con.cursor()
                 # cur.execute("INSERT INTO usuario (usuario, clave) VALUES (?,?)",
                 #             (usuario, contrasena))
+                # cur.execute("INSERT INTO usuario (usuario, clave) VALUES (?,?)",
+                #             (usuario, consenc))
                 cur.execute("INSERT INTO usuario (usuario, clave) VALUES (?,?)",
-                            (usuario, consenc))
+                            (usuario, hashContraseña))
                 con.commit()
                 return 'Guardado Satisfactoriamente'
             except:
@@ -192,5 +224,20 @@ def logout():
     else:
         return '<p> El usuario ya ha cerrado la sesión </p>   '
 
+@app.route( '/downloadpdf', methods=('GET', 'POST') )
+def downloadpdf():
+    return send_file( "resources/doc.pdf", as_attachment=True )
+
+
+@app.route( '/downloadimage', methods=('GET', 'POST') )
+def downloadimage():
+    return send_file( "resources/image.png", as_attachment=True )
+
+@app.route('/uploader/',methods=['POST'])
+def uploader():
+    f = request.files['fload']
+    f.save(f.filename)
+    return 'file uploaded successfully'
+
 if __name__=='__main__':
-    app.run (debug=True, port=8080)
+    app.run( host='127.0.0.1', port =443, ssl_context=('micertificado.pem', 'llaveprivada.pem')  )
