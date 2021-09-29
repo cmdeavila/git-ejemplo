@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    
+    <title>{% block title %}{% endblock %} </title>
+</head>
+<body>
+    {% block content %}
+    
+    {% endblock %}
+
+    <footer>
+        <div class = "container">
+            <div class = "row">
+                <p class ="copyright text-muted">&copy; MisionTic 2022</p>
+
+            </div>
+
+        </div>
+    </footer>
+    <img src="{{url_for('static', filename='img/flask.jpg')}}" >
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery.js')}}"></script>
+    
+</body>
+</html>

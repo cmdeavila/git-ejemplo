@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <!-- <script>
         var nombre, apellido;
@@ -17,24 +19,47 @@
         }
 
     </script> -->
+    
     <!-- <script>
-        var cont, n;
-        n = prompt("Escriba un número: ")
-        document.write('Hola' + n + 'veces<br>');
-        for(var cont=0; cont<n; cont++){
-            document.write(cont + ' Hola<br>');
+        document.write("Adivina el número secreto")
+        var max = 50;
+        var min = 1;
+        var numale = Math.random() * (max - min) + min;
+        numale = parseInt(numale)
+        console.log(numale)
+        var mensaje = "Ingresa un número entre 1 y 50";
+        while (true) {
+            var numero = prompt(mensaje);
+            numero = parseInt(numero);
+            if (numero == numale) {
+                alert("Adivinaste el número");
+                break;
+
+            } else if (numero > numale) {
+                mensaje = "El número que ingresaste es mayor que el número generado";
+
+            } else {
+                mensaje = "El número que ingresaste es menor que el número generado";
+            }
         }
+
     </script> -->
 
-    <!-- <script>
-        var i = 0;
-        while (i < 11){
-            alert('valor de i: ' + i);
-            i++;
-        }
-    </script> -->
 
     <script>
+        num = prompt("Ingrese número a generar:")
+        num=parseInt(num)
+        for (var i = 1; i <= num; i++) {
+            if (i % 2 != 0) {
+                continue;
+            }
+            document.write(i + '<br>');
+            console.log(i)
+        }
+    </script>
+
+
+    <!-- <script>
         function mostrarComprendidos(x1, x2){
             var inicio
             for(inicio = x1; inicio<=x2; inicio++){
@@ -49,8 +74,9 @@
         valor2 = parseInt(valor2);
         mostrarComprendidos(valor1, valor2);
 
-    </script>
+    </script> -->
 
 
 </body>
+
 </html>

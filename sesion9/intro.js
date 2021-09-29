@@ -1,7 +1,7 @@
 //TIPOS DE DATOS
 /*  string, number, boolean
-    array ['joe', 'ryan', 'martha']
-    object {'nomusuario':'ryan',
+    array ['carmen', 'fabian', 'carol']
+    object {'nomusuario':'carol',
             'puntaje':70.4,
             'horas':14,
             'profesional':true} 
@@ -13,7 +13,7 @@
     const : constante
 */
 
-/*  El cuadro de diálogo de alert ('usuaario equivocado')
+/*  El cuadro de diálogo de alert ('usuario equivocado')
     Muestra un cuadro de diálogo que contiene un mensaje. 
     este mensaje se coloca entre comillas, 
     entre los paréntesis de la function alert ().
