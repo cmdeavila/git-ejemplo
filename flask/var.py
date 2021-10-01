@@ -8,7 +8,7 @@ def index():
 
 @app.route('/user')
 @app.route('/user/<name>')
-def user(name='carmen'):
+def user1(name='carmen'):
     return render_template('user1.html')
 if __name__ == '__main__':
     app.run(debug = True, port=8000)

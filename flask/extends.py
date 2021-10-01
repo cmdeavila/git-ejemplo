@@ -4,9 +4,10 @@ from flask import render_template
 app = Flask(__name__)
 
 @app.route('/') 
-def index():
-    name = 'Carmen'
-    return render_template('index.html', nombre=name)
+@app.route('/saluda/') 
+@app.route('/saluda/<nombre>') 
+def saludar(nombre=None):
+    return render_template('index.html', nombre=nombre)
 
 @app.route('/client') 
 def client():

@@ -1,7 +1,15 @@
 {% extends 'base/base.html' %}
 
-{% block content %}
-    <p>Esto es parte del index </p>
-    <p>{{ nombre }} </p>
-{% endblock%}
+{% block title %}
+    Hola, {{nombre}}
+{% endblock %}
 
+{% block content %}
+    <h2>Vamos a saludar</h2>
+        {% if nombre %}
+            <h1>Hola {{nombre}}</h1>
+            <p>¿Cómo estás?</p>
+        {%else%}
+            <p>No has indicado un nombre</p>
+        {% endif %}
+{% endblock%}
